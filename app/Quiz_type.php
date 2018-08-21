@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Quiz_type extends Model
 {
-    //
+    protected $table = 'Quiz_types';
+    public $primaryKey = 'quizs_types_id';
+    
 }
