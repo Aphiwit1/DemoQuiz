@@ -1,13 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
-use App\Quiz;
-use DB;
 
-class QuizController extends Controller
+class SubjectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,20 +13,8 @@ class QuizController extends Controller
      */
     public function index()
     {
-        $username = Auth::user()->username;
-       
-        
-        // $data = Quiz::all();
-        $quizzes = DB::table('quizs')
-                ->join('Subjects', 'quizs.subject_id', '=', 'Subjects.subject_id')
-                ->join('Quiz_types','Quiz_types.quizs_types_id','=','quizs.quizs_types_id')
-                ->join('subjects_user','subjects_user.subject_id','=','Subjects.subject_id')
-                ->join('users','users.username','=','subjects_user.username')
-                ->where('users.username', '=', $username)
-                ->get();
-        
+        $subjects = Subject::all();
         return view('quiz/index',compact('quizzes'));
-        
     }
 
     /**

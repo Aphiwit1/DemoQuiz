@@ -22,6 +22,9 @@ class CreateQuizTable extends Migration
 
             //foreign key
             $table->foreign('quiz_status_id')->references('id')->on('quiz_status');
+            $table->foreign('quiz_type_id')->references('id')->on('quiz_type');
+            $table->foreign('subject_id')->references('id')->on('subject');
+            
 
         });
     }

@@ -28,9 +28,10 @@
             <tbody>
                     @foreach($quizzes as $q)
                 <tr>
-                        <td style="font-size: 0.8em;">{{$q->quiz_title}}</td>
-                        <td style="font-size: 0.8em;">{{$q->quiz_description}}</td>
-                        <td style="font-size: 0.8em;">{{$q->quiz_date}}</td>
+                        <td style="font-size: 0.8em;">{{$q->quizs_id}}</td>
+                   
+                        <td style="font-size: 0.8em;">{{$q->title}}</td>
+                        <td style="font-size: 0.8em;">{{$q->description}}</td>
                         <td></td>
                         <td></td>
                         <td></td>
