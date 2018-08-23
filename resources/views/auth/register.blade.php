@@ -112,7 +112,13 @@
                                 </button>
                             </div>
                         </div>
+
+
+                        <button type="reset" class="btn btn-danger">ยกเลิก</button>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> บันทึก</button>
                     </form>
+
+
                 </div>
             </div>
         </div>

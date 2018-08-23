@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Quiz extends Model
 {
     protected $table = 'quizs';
+    public $timestamps = false;
     public $primaryKey = 'quizs_id';
-    // protected $fillable = ['quiz_id','quiz_date','quiz_title','quiz_description'];
+    protected $fillable = ['title','description','subject_id','groups_id','quizs_types_id','quizs_status_id','quiz_date'];
 
     // public function quiz_status(){
     //     return $this->belongsTo('App\Quiz_status');

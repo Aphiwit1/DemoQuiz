@@ -6,6 +6,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Quiz;
 use DB;
+use Input;
+use Config;
+use Form;
+use Html;
 
 class QuizController extends Controller
 {
@@ -42,7 +46,8 @@ class QuizController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view('quiz/addQuiz');
     }
 
     /**
@@ -53,7 +58,21 @@ class QuizController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        
+       
+          $quiz = new Quiz([
+            'title' => $request->get('title'),
+            'description' => $request->get('description'),
+            'quiz_date' => $request->get('quiz_date'),
+            'subject_id' => $request->get('subject_id'),
+            'groups_id' => $request->get('groups_id'),
+            'quizs_types_id' => $request->get('quizs_types_id'),
+            'quizs_status_id' => $request->get('quizs_status_id'),
+          ]);
+         
+          $quiz->save();
+          return redirect()->route('quiz.index');
     }
 
     /**

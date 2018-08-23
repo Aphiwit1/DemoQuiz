@@ -20,6 +20,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/quiz','QuizController@index');
+Route::get('/quiz/addQuiz','QuizController@create');
+Route::post('/quiz/saveQuiz','QuizController@store');
 
 
 

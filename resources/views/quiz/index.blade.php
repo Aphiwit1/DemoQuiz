@@ -1,13 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
 <div class="container">
     <div class="row mb-2">
         <div class="col-md-3">
-            <h1 >Quiz Manager</h1>
+            <h2 >Quiz Manager</h2>
             </div>
             <div class="col-md-9">
-                    <a href="#" class="btn btn-success float-right">Add Quiz</a>
+            <a href="{{ URL::to('quiz/addQuiz')}}" class="btn btn-success float-right">Add Quiz</a>
                 </div>   
     </div>
     <div class="row">
@@ -33,9 +33,9 @@
                         <td style="font-size: 0.8em;">{{$q->quiz_date}}</td>
                         <td style="font-size: 0.8em;">{{$q->subject_id}}</td>
                         {{-- name is from group_name --}}
-                        <td>{{$q->group_name}}</td>
-                        <td>{{$q->type_name}}</td>  
-                        <td>{{$q->status_name}}</td>
+                        <td style="font-size: 0.8em;">{{$q->group_name}}</td>
+                        <td style="font-size: 0.8em;">{{$q->type_name}}</td>  
+                        <td style="font-size: 0.8em;">{{$q->status_name}}</td>
                         
                     
 

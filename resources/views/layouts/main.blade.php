@@ -74,7 +74,30 @@
             </div>
         </nav>
         
-
+        <nav class="navbar navbar-light bg-light">
+            <div class="container">         
+                <nav class="navbar navbar-expand-md navbar-light" style="text-align:center;">
+                   
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                    <ul class="navbar-nav ml-5">
+                                      <li class="nav-item ">
+                                        <a class="nav-link" href="#">Home</a>
+                                      </li>
+                                      <li class="nav-item ml-4">
+                                        <a class="nav-link" href="#">Quiz Manager</a>
+                                      </li>
+                                      <li class="nav-item ml-4">
+                                        <a class="nav-link" href="#">User Manager</a>
+                                      </li>
+                                      <li class="nav-item ml-4">
+                                        <a class="nav-link disabled" href="#">Setting</a>
+                                      </li>
+                                    </ul>
+                            </div>
+                      </nav>
+                    
+            </div>
+        </nav>
 
         <main class="py-4">
             @yield('content')
