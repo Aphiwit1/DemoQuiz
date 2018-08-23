@@ -76,30 +76,23 @@ class QuizController extends Controller
             'quizs_status_id' => $request->get('quizs_status_id'),
           ]);
 
-          $subject = new Subject([
-              'subject_id' => $request->get('subject_id'),
-          ]);
+          $quiz->save();
 
-          $subject_user = new Subject_user([
-                'subject_id' => $request->get('subject_id'),
-                'username' => $request->get('username')
-          ]);
-
-          $quiz_type = new Quiz_type([
-              'quizs_types_id' => $request->get('quizs_types_id'),
-          ]);
-          $quiz_status = new Quiz_type([
-                'quizs_status_id' => $request->get('quizs_types_id'),
-          ]);
           $group_quiz = new Group_quiz([
-                'quizs_id' =>$request->get('quizs_id'),
+                'quizs_id' =>$quiz->quizs_id,
                 'groups_id' =>$request->get('groups_id')
           ]);
-          $group = new Group([
-              'groups_id' => $request->get('groups_id') 
-          ]);
+
+          $group_quiz->save();
+
+          $subject_user = new Subject_user([
+            'subject_id' => $request->get('subject_id'),
+            'username' => Auth::user()->username
+      ]);
+
+      $subject_user->save();
          
-          $quiz->save();
+          
           return redirect()->route('quiz.index');
     }
 
@@ -122,7 +115,9 @@ class QuizController extends Controller
      */
     public function edit($id)
     {
-        $quiz = Quiz::find($id);
+        $quiz = Quiz::findorfail($id);
+
+        return view('quiz/editQuiz', compact('quiz'));
     }
 
     /**
@@ -134,7 +129,17 @@ class QuizController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $quiz = Quiz::find($id);
+        $quiz->title = $request->get('title');
+        $duiz->description = $request->get('description');
+        $quiz->quiz_date = $request->get('quiz_date');
+        $quiz->subject_id = $request->get('subject_id');
+        $quiz->groups_id = $request->get('groups_id');
+        $quiz->quizs_types_id = $request->get('quizs_types_id');
+        $quiz->quizs_status_id = $request->get('quizs_status_id');
+           
+        $quiz->save();
+        return redirect()->route('quiz.index')->with('success', 'Data Updated');
     }
 
     /**

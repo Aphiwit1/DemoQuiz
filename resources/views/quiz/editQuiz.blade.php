@@ -4,15 +4,23 @@
 <div class="container">
     <div class="row mb-2">
         <div class="col-md-3">
-            <h2 >Add Quiz</h2>
+            <h2 >Edit Quiz</h2>
             </div>
             <div class="col-md-9">
             
                 </div>   
     </div>
 
+    <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="{{ URL::to('quiz')}}">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Edit Quiz</li>
+            </ol>
+          </nav>
+          
+
     <div class="row">
-    <form action="{{URL::to('quiz/saveQuiz')}}" method="post">
+    <form action="{{URL::to('quiz/updateQuiz')}}" method="post">
         @csrf
 
         {{-- title --}}
@@ -20,7 +28,7 @@
             <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('title') }}</label>
 
             <div class="col-md-6">
-                <input id="title" type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title" value="{{ old('title') }}" required autofocus>
+                <input id="title" type="text" class="form-control{{ $errors->has('title') ? ' is-invalid' : '' }}" name="title" value="{{ $quiz->title}}" required autofocus>
 
                 @if ($errors->has('title'))
                     <span class="invalid-feedback" role="alert">
@@ -35,7 +43,7 @@
             <label for="description" class="col-md-4 col-form-label text-md-right">{{ __('description') }}</label>
 
             <div class="col-md-6">
-                <input id="description" type="text" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" value="{{ old('description') }}" required autofocus>
+            <input id="description" type="text" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" value="{{$quiz->description}}" required autofocus>
 
                 @if ($errors->has('description'))
                     <span class="invalid-feedback" role="alert">
@@ -51,7 +59,7 @@
             <label for="quiz_date" class="col-md-4 col-form-label text-md-right">{{ __('quiz_date') }}</label>
 
             <div class="col-md-6">
-                <input id="quiz_date" type="date" class="form-control{{ $errors->has('quiz_date') ? ' is-invalid' : '' }}" name="quiz_date" value="{{ old('quiz_date') }}" required autofocus>
+            <input id="quiz_date" type="date" class="form-control{{ $errors->has('quiz_date') ? ' is-invalid' : '' }}" name="quiz_date" value="{{ date('Y-m-d',strtotime($quiz->quiz_date)) }}" required autofocus>
 
                 @if ($errors->has('quiz_date'))
                     <span class="invalid-feedback" role="alert">
@@ -66,7 +74,7 @@
             <label for="subject_id" class="col-md-4 col-form-label text-md-right">{{ __('subject_id') }}</label>
 
             <div class="col-md-6">
-                <input id="subject_id" type="text" class="form-control{{ $errors->has('subject_id') ? ' is-invalid' : '' }}" name="subject_id" value="{{ old('subject_id') }}" required autofocus>
+            <input id="subject_id" type="text" class="form-control{{ $errors->has('subject_id') ? ' is-invalid' : '' }}" name="subject_id" value="{{$quiz->subject_id}}" required autofocus>
 
                 @if ($errors->has('subject_id'))
                     <span class="invalid-feedback" role="alert">
@@ -81,7 +89,7 @@
             <label for="groups_id" class="col-md-4 col-form-label text-md-right">{{ __('groups_id') }}</label>
 
             <div class="col-md-6">
-                <input id="groups_id" type="text" class="form-control{{ $errors->has('groups_id') ? ' is-invalid' : '' }}" name="groups_id" value="{{ old('groups_id') }}" required autofocus>
+            <input id="groups_id" type="text" class="form-control{{ $errors->has('groups_id') ? ' is-invalid' : '' }}" name="groups_id" value="{{$quiz->groups_id}}" required autofocus>
 
                 @if ($errors->has('groups_id'))
                     <span class="invalid-feedback" role="alert">
@@ -96,7 +104,7 @@
             <label for="quizs_types_id" class="col-md-4 col-form-label text-md-right">{{ __('quizs_types_id') }}</label>
 
             <div class="col-md-6">
-                <input id="quizs_types_id" type="text" class="form-control{{ $errors->has('quizs_types_id') ? ' is-invalid' : '' }}" name="quizs_types_id" value="{{ old('quizs_types_id') }}" required autofocus>
+            <input id="quizs_types_id" type="text" class="form-control{{ $errors->has('quizs_types_id') ? ' is-invalid' : '' }}" name="quizs_types_id" value="{{$quiz->quizs_types_id}}" required autofocus>
 
                 @if ($errors->has('quizs_types_id'))
                     <span class="invalid-feedback" role="alert">
@@ -111,7 +119,7 @@
             <label for="quizs_status_id" class="col-md-4 col-form-label text-md-right">{{ __('quizs_status_id') }}</label>
 
             <div class="col-md-6">
-                <input id="quizs_status_id" type="text" class="form-control{{ $errors->has('quizs_status_id') ? ' is-invalid' : '' }}" name="quizs_status_id" value="{{ old('quizs_status_id') }}" required autofocus>
+            <input id="quizs_status_id" type="text" class="form-control{{ $errors->has('quizs_status_id') ? ' is-invalid' : '' }}" name="quizs_status_id" value="{{$quiz->quizs_status_id}}" required autofocus>
 
                 @if ($errors->has('quizs_status_id'))
                     <span class="invalid-feedback" role="alert">

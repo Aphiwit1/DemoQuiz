@@ -23,6 +23,11 @@ Route::get('/quiz','QuizController@index')->name('quiz.index');
 Route::get('/quiz/addQuiz','QuizController@create');
 Route::post('/quiz/saveQuiz','QuizController@store');
 
+// edit quiz
+Route::get('/quiz/editQuiz/{id?}','QuizController@edit');
+Route::get('/quiz/updateQuiz','QuizController@update');
+
+
 
 
 
