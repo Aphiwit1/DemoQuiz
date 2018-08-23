@@ -5,6 +5,14 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use App\Quiz;
+use App\Group_quiz;
+use App\Group;
+use App\Question;
+use App\Quiz_status;
+use App\Quiz_type;
+use App\Subject_user;
+use App\Subject;
+use App\User;
 use DB;
 use Input;
 use Config;
@@ -58,9 +66,6 @@ class QuizController extends Controller
      */
     public function store(Request $request)
     {
-        
-        
-       
           $quiz = new Quiz([
             'title' => $request->get('title'),
             'description' => $request->get('description'),
@@ -69,6 +74,29 @@ class QuizController extends Controller
             'groups_id' => $request->get('groups_id'),
             'quizs_types_id' => $request->get('quizs_types_id'),
             'quizs_status_id' => $request->get('quizs_status_id'),
+          ]);
+
+          $subject = new Subject([
+              'subject_id' => $request->get('subject_id'),
+          ]);
+
+          $subject_user = new Subject_user([
+                'subject_id' => $request->get('subject_id'),
+                'username' => $request->get('username')
+          ]);
+
+          $quiz_type = new Quiz_type([
+              'quizs_types_id' => $request->get('quizs_types_id'),
+          ]);
+          $quiz_status = new Quiz_type([
+                'quizs_status_id' => $request->get('quizs_types_id'),
+          ]);
+          $group_quiz = new Group_quiz([
+                'quizs_id' =>$request->get('quizs_id'),
+                'groups_id' =>$request->get('groups_id')
+          ]);
+          $group = new Group([
+              'groups_id' => $request->get('groups_id') 
           ]);
          
           $quiz->save();
@@ -94,7 +122,7 @@ class QuizController extends Controller
      */
     public function edit($id)
     {
-        //
+        $quiz = Quiz::find($id);
     }
 
     /**
