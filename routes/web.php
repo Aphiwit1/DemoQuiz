@@ -19,17 +19,27 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/quiz','QuizController@index')->name('quiz.index');
-Route::get('/quiz/addQuiz','QuizController@create');
-Route::post('/quiz/saveQuiz','QuizController@store');
-
-// edit quiz
+//quiz
+Route::get('/quiz/{subject_id?}','QuizController@index')->name('quiz.index'); //name use for redirect in update
+Route::get('/quiz/addQuiz/{subject_id?}','QuizController@create');
+Route::post('/quiz/saveQuiz/{subject_id?}','QuizController@store');
 Route::get('/quiz/editQuiz/{id?}','QuizController@edit');
-Route::get('/quiz/updateQuiz','QuizController@update');
+Route::post('/quiz/updateQuiz','QuizController@update');
+Route::get('/quiz/deleteQuiz/{id?}','QuizController@destroy');
 
 
 
+//subject
+Route::get('/subject','SubjectController@index')->name('subject.index'); //name for reditect in update 
+Route::get('/subject/addSubject','SubjectController@create');
+Route::post('/subject/saveSubject','SubjectController@store');
+Route::get('/subject/editSubject/{id?}','SubjectController@edit');
+Route::post('/subject/updateSubject','SubjectController@update');
+Route::get('/subject/deleteSubject/{id?}','SubjectController@destroy');
 
+
+
+Route::get('/theme','ThemeController@theme');
 
 
 

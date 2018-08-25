@@ -1,6 +1,24 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
+
+
+use App\User;
+use App\Quiz;
+use App\Group_quiz;
+use App\Group;
+use App\Question;
+use App\Quiz_status;
+use App\Quiz_type;
+use App\Subject_user;
+use App\Subject;
+
+use DB;
+use Input;
+use Config;
+use Form;
+use Html;
 
 use Illuminate\Http\Request;
 
@@ -13,18 +31,17 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        $quizzes = DB::table('quizs')
-        ->join('Subjects', 'quizs.subject_id', '=', 'Subjects.subject_id')
-        ->join('Quiz_types','Quiz_types.quizs_types_id','=','quizs.quizs_types_id')
-        ->join('subjects_user','subjects_user.subject_id','=','Subjects.subject_id')
-        ->join('users','users.username','=','subjects_user.username')
-        ->join('Quiz_status','Quiz_status.quizs_status_id','=','quizs.quizs_status_id')
-        ->join('Groups_quizs','Groups_quizs.quizs_id','=','quizs.quizs_id')
-        ->join('Groups','Groups.groups_id','=','Groups_quizs.groups_id')
+        $username = Auth::user()->username;
+
+        $subject = DB::table('Subjects')
+        ->join('quizs','quizs.subject_id','=','Subjects.subject_id')
+        ->join('subjects_user.subject_id','=','Subjects.subject_id')
+        ->join('users.username','=','subjects_user.username')
         ->where('users.username', '=', $username)
         ->get();
 
-        return view('quiz/index',compact('quizzes'));
+        return view('subject/index',compact('subject'));
+        
     }
 
     /**
@@ -34,7 +51,7 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('subject/addSubject');
     }
 
     /**
@@ -45,7 +62,12 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $subject = new Subject([
+            'subject_id' => $request->get('subject_id'),
+            'subject_name' => $request->get('subject_nmame')
+        ]);
+
+        $subject->save();
     }
 
     /**

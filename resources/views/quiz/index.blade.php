@@ -7,7 +7,7 @@
             <h2 >Quiz Manager</h2>
             </div>
             <div class="col-md-9">
-            <a href="{{ URL::to('quiz/addQuiz')}}" class="btn btn-success float-right">Add Quiz</a>
+            <a href="{{ URL::to('quiz/addQuiz/{subject_id?}')}}" class="btn btn-success float-right">Add Quiz</a>
                 </div>   
     </div>
     <div class="row">
@@ -40,12 +40,10 @@
                     
 
                         <td >
-                            <a href="#" class="btn btn-info ">View</a>
+                            <a href="{{URL::to('/question/'.$q->quizs_id)}}" class="btn btn-info ">View</a>
                             <a href="{{ URL::to('quiz/editQuiz/'.$q->quizs_id) }}" class="btn btn-warning ">Edit</a>
-                            <a href="#" class="btn btn-danger">Delete</a>
+                            <a href="{{ URL::to('quiz/deleteQuiz/'.$q->quizs_id)}}" class="btn btn-danger">Delete</a>
                         </td>
-                     
-                        
                 </tr>
                      @endforeach
             </tbody>

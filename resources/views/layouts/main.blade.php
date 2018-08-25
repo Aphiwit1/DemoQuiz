@@ -21,7 +21,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('vender/bootstrap/css/bootstrap.min.css')}}">
-    {{-- <link rel="stylesheet" href="{{asset('css/style.css')}}"> --}}
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
 </head>
 <body>
     <div id="app">

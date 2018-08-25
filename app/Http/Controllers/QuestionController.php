@@ -13,7 +13,15 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        
+       
+        $question = DB::table('Questions')
+        ->join('Question_types','Question_types.questions_types_id','=','Questions.questions_types_id')
+                    ->join('quizs','quizs.quizs_id','=','Questions.quizs_id')
+                    ->join('Answer','Answer.questions_id','=','Questions.questions_id')
+                    ->join('Choice','Choice.questions_id','=','Questions.questions_id')
+                    ->join('choice_type','choice_type.choice_type_id','=','Choice.choice_type_id')
+                    ->get();
+                    
     }
 
     /**
@@ -79,6 +87,6 @@ class QuestionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
     }
 }

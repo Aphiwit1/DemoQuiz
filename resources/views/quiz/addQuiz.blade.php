@@ -12,9 +12,8 @@
     </div>
 
     <div class="row">
-    <form action="{{URL::to('quiz/saveQuiz')}}" method="post">
+    <form action="{{URL::to('/quiz/saveQuiz/{subject_id?}')}}" method="post">
         @csrf
-
         {{-- title --}}
         <div class="form-group row">
             <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('title') }}</label>

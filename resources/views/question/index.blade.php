@@ -7,11 +7,11 @@
             <h2 >Question Manager</h2>
             </div>
             <div class="col-md-9">
-            <a href="{{ URL::to('quiz/addQuiz')}}" class="btn btn-success float-right">Add Quiz</a>
+            <a href="{{ URL::to('question/addQuestion')}}" class="btn btn-success float-right">Add Quiz</a>
                 </div>   
     </div>
     <div class="row">
-        this is question
+        
          
          <hr>
     </div>

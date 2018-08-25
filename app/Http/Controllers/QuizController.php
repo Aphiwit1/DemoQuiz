@@ -26,9 +26,10 @@ class QuizController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($subject_id)
     {
         $username = Auth::user()->username;
+    
        
         
         // $data = Quiz::all();
@@ -41,6 +42,7 @@ class QuizController extends Controller
                 ->join('Groups_quizs','Groups_quizs.quizs_id','=','quizs.quizs_id')
                 ->join('Groups','Groups.groups_id','=','Groups_quizs.groups_id')
                 ->where('users.username', '=', $username)
+                ->where('Subjects.subject_id','=',$subject_id)
                 ->get();
         
         return view('quiz/index',compact('quizzes'));
@@ -79,14 +81,14 @@ class QuizController extends Controller
           $quiz->save();
 
           $group_quiz = new Group_quiz([
-                'quizs_id' =>$quiz->quizs_id,
+                'quizs_id' =>$quiz->quizs_id, //quiz ใหม่เรื่อยๆ ต้องทำแบบนี้เพื่อให้ข้อมูลเก็บ
                 'groups_id' =>$request->get('groups_id')
           ]);
 
           $group_quiz->save();
 
           $subject_user = new Subject_user([
-            'subject_id' => $request->get('subject_id'),
+            'subject_id' => $request->get('subject_id'), //มีอยู่ก่อนแล้วแค่ดึงค่ามาจากข้างบน
             'username' => Auth::user()->username
       ]);
 
@@ -127,11 +129,13 @@ class QuizController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
+
+        $id = $request->get('quiz_id'); //id sent by editQuiz.blade.php
         $quiz = Quiz::find($id);
         $quiz->title = $request->get('title');
-        $duiz->description = $request->get('description');
+        $quiz->description = $request->get('description');
         $quiz->quiz_date = $request->get('quiz_date');
         $quiz->subject_id = $request->get('subject_id');
         $quiz->groups_id = $request->get('groups_id');
@@ -150,6 +154,13 @@ class QuizController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $quiz = Quiz::find($id);
+        $quiz->delete();
+        return redirect()->route('quiz.index')->with('success', 'Data Deleted');
     }
+
+    public function theme(){
+        return view('theme');
+      }
 }
+
