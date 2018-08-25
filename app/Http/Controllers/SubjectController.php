@@ -33,6 +33,9 @@ class SubjectController extends Controller
     {
         $username = Auth::user()->username;
 
+
+         // $data = Quiz::all();
+
         $subject = DB::table('Subjects')
         ->join('quizs','quizs.subject_id','=','Subjects.subject_id')
         ->join('subjects_user.subject_id','=','Subjects.subject_id')
@@ -89,7 +92,9 @@ class SubjectController extends Controller
      */
     public function edit($id)
     {
-        //
+        $subject = Subject::findorfail($id);
+
+        return view('subject/editSubject', compact('subject'));
     }
 
     /**
@@ -99,9 +104,15 @@ class SubjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $id = $request->get('subjecr_id'); //id sent by editQuiz.blade.php
+        $subject = Subject::find($id);
+        $subject->subject_id = $request->get('subject_id');
+        $subject->subject_name = $request->get('subject_name');
+        $subject->save();
+           
+        return redirect()->route('subject.index')->with('success', 'Data Updated');
     }
 
     /**
