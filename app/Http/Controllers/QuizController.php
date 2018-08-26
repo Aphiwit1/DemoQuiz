@@ -86,16 +86,8 @@ class QuizController extends Controller
           ]);
 
           $group_quiz->save();
-
-          $subject_user = new Subject_user([
-            'subject_id' => $request->get('subject_id'), //มีอยู่ก่อนแล้วแค่ดึงค่ามาจากข้างบน
-            'username' => Auth::user()->username
-      ]);
-
-      $subject_user->save();
-         
-          
-          return redirect()->route('quiz.index');
+                   
+          return redirect()->route('quiz.index',['subject_id'=>$request->get('subject_id')]);
     }
 
     /**
@@ -152,11 +144,11 @@ class QuizController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id,$subject_id)
     {
         $quiz = Quiz::find($id);
         $quiz->delete();
-        return redirect()->route('quiz.index')->with('success', 'Data Deleted');
+        return redirect()->route('quiz.index',['subject_id'=>$subject_id])->with('success', 'Data Deleted');
     }
 
 }

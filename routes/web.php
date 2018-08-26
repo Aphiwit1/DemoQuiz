@@ -25,7 +25,7 @@ Route::get('/quiz/addQuiz/{subject_id?}','QuizController@create')->name('addQuiz
 Route::post('/quiz/saveQuiz/{subject_id?}','QuizController@store');
 Route::get('/quiz/editQuiz/{subject_id?}','QuizController@edit');
 Route::post('/quiz/updateQuiz','QuizController@update');
-Route::get('/quiz/deleteQuiz/{id?}','QuizController@destroy');
+Route::get('/quiz/deleteQuiz/{id?}/{subject_id?}','QuizController@destroy');
 
 
 
@@ -39,7 +39,7 @@ Route::get('/subject/deleteSubject/{id?}','SubjectController@destroy');
 
 
 //question 
-Route::get('/question','QuestionController@index')->name('question.index'); //name for reditect in update
+Route::get('/question/{id?}','QuestionController@index')->name('question.index'); //name for reditect in update
 
 // Multiple Choice
 Route::get('/multiple','MultipleChoiceController@index')->name('multiple.index');
