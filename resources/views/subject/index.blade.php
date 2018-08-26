@@ -31,6 +31,7 @@
                 @foreach($subjects as $subject)
             <tr>
                     <td style="font-size: 0.8em;">{{$subject->subject_id}}</td>
+                   
                     <td style="font-size: 0.8em;">{{$subject->subject_name}}</td>
 
                     <td >

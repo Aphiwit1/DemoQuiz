@@ -31,18 +31,21 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        $username = Auth::user()->username;
 
+        
+        $username = Auth::user()->username;
+        
          // $data = Quiz::all();
 
-        $subject = DB::table('Subjects')
+        $subjects = DB::table('Subjects')
         ->join('quizs','quizs.subject_id','=','Subjects.subject_id')
-        ->join('subjects_user.subject_id','=','Subjects.subject_id')
-        ->join('users.username','=','subjects_user.username')
+        ->join('subjects_user','subjects_user.subject_id','=','Subjects.subject_id')
+        ->join('users','users.username','=','subjects_user.username')
         ->where('users.username', '=', $username)
         ->get();
 
-        return view('subject/index',compact('subject'));
+
+        return view('subject/index',compact('subjects'));
         
     }
 
@@ -66,10 +69,11 @@ class SubjectController extends Controller
     {
         $subject = new Subject([
             'subject_id' => $request->get('subject_id'),
-            'subject_name' => $request->get('subject_nmame')
+            'subject_name' => $request->get('subject_name')
         ]);
 
         $subject->save();
+        return redirect()->route('subject.index');
     }
 
     /**

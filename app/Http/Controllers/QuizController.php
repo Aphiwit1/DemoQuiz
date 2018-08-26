@@ -57,7 +57,7 @@ class QuizController extends Controller
     public function create()
     {
         
-        return view('quiz/addQuiz');
+        return view('quiz/addQuiz/');
     }
 
     /**

@@ -21,9 +21,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //quiz
 Route::get('/quiz/{subject_id?}','QuizController@index')->name('quiz.index'); //name use for redirect in update
-Route::get('/quiz/addQuiz/{subject_id?}','QuizController@create');
+Route::get('/quiz/addQuiz/','QuizController@create');
 Route::post('/quiz/saveQuiz/{subject_id?}','QuizController@store');
-Route::get('/quiz/editQuiz/{id?}','QuizController@edit');
+Route::get('/quiz/editQuiz/{subject_id?}','QuizController@edit');
 Route::post('/quiz/updateQuiz','QuizController@update');
 Route::get('/quiz/deleteQuiz/{id?}','QuizController@destroy');
 
