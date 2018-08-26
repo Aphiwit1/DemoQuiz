@@ -7,7 +7,7 @@
             <h2 >Quiz Manager</h2>
             </div>
             <div class="col-md-9">
-            <a href="{{ URL::to('quiz/addQuiz/{subject_id?}')}}" class="btn btn-success float-right">Add Quiz</a>
+            <a href="{{ URL::route('addQuiz', ['subject_id'=>$subject_id]) }}" class="btn btn-success float-right">Add Quiz</a>
                 </div>   
     </div>
     <div class="row">

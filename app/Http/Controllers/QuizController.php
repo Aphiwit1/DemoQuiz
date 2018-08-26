@@ -45,7 +45,7 @@ class QuizController extends Controller
                 ->where('Subjects.subject_id','=',$subject_id)
                 ->get();
         
-        return view('quiz/index',compact('quizzes'));
+        return view('quiz/index',compact('quizzes','subject_id'));
         
     }
 
@@ -54,10 +54,10 @@ class QuizController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($subject_id)
     {
         
-        return view('quiz/addQuiz/');
+        return view('quiz/addQuiz',compact('subject_id'));
     }
 
     /**
@@ -143,7 +143,7 @@ class QuizController extends Controller
         $quiz->quizs_status_id = $request->get('quizs_status_id');
            
         $quiz->save();
-        return redirect()->route('quiz.index')->with('success', 'Data Updated');
+        return redirect()->route('quiz.index',['subject_id'=>$request->get('subject_id')])->with('success', 'Data Updated');
     }
 
     /**

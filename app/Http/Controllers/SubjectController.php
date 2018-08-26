@@ -4,13 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 
 
-use App\User;
+
 use App\Quiz;
-use App\Group_quiz;
-use App\Group;
-use App\Question;
-use App\Quiz_status;
-use App\Quiz_type;
 use App\Subject_user;
 use App\Subject;
 
@@ -38,11 +33,14 @@ class SubjectController extends Controller
          // $data = Quiz::all();
 
         $subjects = DB::table('Subjects')
-        ->join('quizs','quizs.subject_id','=','Subjects.subject_id')
+       
         ->join('subjects_user','subjects_user.subject_id','=','Subjects.subject_id')
         ->join('users','users.username','=','subjects_user.username')
         ->where('users.username', '=', $username)
         ->get();
+
+
+        
 
 
         return view('subject/index',compact('subjects'));
@@ -56,6 +54,7 @@ class SubjectController extends Controller
      */
     public function create()
     {
+
         return view('subject/addSubject');
     }
 
@@ -67,12 +66,20 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        $subject = new Subject([
-            'subject_id' => $request->get('subject_id'),
-            'subject_name' => $request->get('subject_name')
+
+        $username = Auth::user()->username;
+    
+        $subject = Subject::insert([
+                    'subject_id' => $request->get('subject_id'),
+                    'subject_name' => $request->get('subject_name')
+                ]);
+         
+        $subject_user = Subject_user::insert([
+                'subject_id' => $request->get('subject_id'),
+                'username' => $username
         ]);
 
-        $subject->save();
+        // $subject->save();
         return redirect()->route('subject.index');
     }
 
@@ -95,8 +102,12 @@ class SubjectController extends Controller
      */
     public function edit($id)
     {
-        $subject = Subject::findorfail($id);
+       
+        $subject = DB::table('Subjects')->where('subject_id','=',$id)->first();
 
+
+        // $data = Subject::findorfail($id);
+        // dd($data->subject_id);
         return view('subject/editSubject', compact('subject'));
     }
 
@@ -109,11 +120,24 @@ class SubjectController extends Controller
      */
     public function update(Request $request)
     {
-        $id = $request->get('subjecr_id'); //id sent by editQuiz.blade.php
+
+        $id = $request->get('subject_id_old'); //id sent by editQuiz.blade.php
+        
         $subject = Subject::find($id);
         $subject->subject_id = $request->get('subject_id');
         $subject->subject_name = $request->get('subject_name');
         $subject->save();
+
+
+        $quiz = Quiz::where('subject_id','=',$id)
+                ->update([
+                    'subject_id' => $request->get('subject_id')
+                ]);
+
+        $subject_user = Subject_user::where('subject_id','=',$id)
+                ->update([
+                    'subject_id' => $request->get('subject_id')
+                ]);
            
         return redirect()->route('subject.index')->with('success', 'Data Updated');
     }

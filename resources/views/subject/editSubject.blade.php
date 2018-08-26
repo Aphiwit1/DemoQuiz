@@ -27,7 +27,7 @@
         {{-- subject id --}}
         <div class="form-group row">
             <label for="subject_id" class="col-md-4 col-form-label text-md-right">{{ __('subject_id') }}</label>
-
+            
             <div class="col-md-6">
             <input id="subject_id" type="text" class="form-control{{ $errors->has('subject_id') ? ' is-invalid' : '' }}" name="subject_id" value="{{$subject->subject_id}}" required autofocus>
 
@@ -55,7 +55,7 @@
             </div>
         </div>
 
-        <input type="hidden" name="subject_id" value="{{ $subject->subject_id}}">
+        <input type="hidden" name="subject_id_old" value="{{ $subject->subject_id}}">
 
         <button type="reset" class="btn btn-danger">ยกเลิก</button>
         <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> บันทึก</button>

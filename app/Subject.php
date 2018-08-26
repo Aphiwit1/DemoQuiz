@@ -9,5 +9,5 @@ class Subject extends Model
     protected $table = 'Subjects';
     public $primaryKey = 'subject_id';
     public $timestamps = false;
-    protected $fillable = ['subject_id','subject_name'];
+    // protected $fillable = ['subject_id','subject_name'];
 }

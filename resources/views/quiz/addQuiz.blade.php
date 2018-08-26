@@ -65,7 +65,7 @@
             <label for="subject_id" class="col-md-4 col-form-label text-md-right">{{ __('subject_id') }}</label>
 
             <div class="col-md-6">
-                <input id="subject_id" type="text" class="form-control{{ $errors->has('subject_id') ? ' is-invalid' : '' }}" name="subject_id" value="{{ old('subject_id') }}" required autofocus>
+                <input id="subject_id" type="text" class="form-control{{ $errors->has('subject_id') ? ' is-invalid' : '' }}" name="subject_id" value="{{ $subject_id }}" required readonly autofocus>
 
                 @if ($errors->has('subject_id'))
                     <span class="invalid-feedback" role="alert">
