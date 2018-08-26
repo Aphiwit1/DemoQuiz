@@ -39,7 +39,11 @@ Route::get('/subject/deleteSubject/{id?}','SubjectController@destroy');
 
 
 //question 
-Route::get('/question','QuestionController@index')->name('question.index'); //name for reditect in update 
+Route::get('/question','QuestionController@index')->name('question.index'); //name for reditect in update
+
+// Multiple Choice
+Route::get('/multiple','MultipleChoiceController@index')->name('multiple.index');
+Route::get('/multipleChoice/addMultipleChoice','MultipleChoiceController@create');
 
 
 

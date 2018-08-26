@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
-use DB;
 
-
-class QuestionController extends Controller
+class MultipleChoiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,17 +13,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-       
-        $question = DB::table('Questions')
-            // ->join('Question_types','Question_types.questions_types_id','=','Questions.questions_types_id')
-            ->join('quizs','quizs.quizs_id','=','Questions.quizs_id')
-            ->join('Answer','Answer.questions_id','=','Questions.questions_id')
-            ->join('Choice','Choice.questions_id','=','Questions.questions_id')
-            ->join('choice_type','choice_type.choice_type_id','=','Choice.choice_type_id')
-            ->get();
-
-            
-            return view('question/index',compact('question'));       
+       return view('multipleChoice/index');
     }
 
     /**
@@ -36,7 +23,7 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        //
+        return view('multipleChoice/addMultipleChoice');
     }
 
     /**
@@ -92,6 +79,6 @@ class QuestionController extends Controller
      */
     public function destroy($id)
     {
-        
+        //
     }
 }
