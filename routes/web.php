@@ -38,8 +38,9 @@ Route::post('/subject/updateSubject','SubjectController@update');
 Route::get('/subject/deleteSubject/{id?}','SubjectController@destroy');
 
 
+//question 
+Route::get('/question','QuestionController@index')->name('question.index'); //name for reditect in update 
 
-Route::get('/theme','ThemeController@theme');
 
 
 

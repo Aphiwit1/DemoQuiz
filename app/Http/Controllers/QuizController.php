@@ -159,8 +159,5 @@ class QuizController extends Controller
         return redirect()->route('quiz.index')->with('success', 'Data Deleted');
     }
 
-    public function theme(){
-        return view('theme');
-      }
 }
 

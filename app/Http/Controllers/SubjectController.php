@@ -33,7 +33,6 @@ class SubjectController extends Controller
     {
         $username = Auth::user()->username;
 
-
          // $data = Quiz::all();
 
         $subject = DB::table('Subjects')
@@ -123,6 +122,8 @@ class SubjectController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $subject = Subject::find($id);
+        $subject->delete();
+        return redirect()->route('subject.index')->with('success', 'Data Deleted');
     }
 }

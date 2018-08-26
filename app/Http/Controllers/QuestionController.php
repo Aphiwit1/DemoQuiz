@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
+use DB;
+
 
 class QuestionController extends Controller
 {
@@ -21,6 +24,9 @@ class QuestionController extends Controller
                     ->join('Choice','Choice.questions_id','=','Questions.questions_id')
                     ->join('choice_type','choice_type.choice_type_id','=','Choice.choice_type_id')
                     ->get();
+
+                    $question->save();
+                    return view('question/index',compact('quizzes'));
                     
     }
 
