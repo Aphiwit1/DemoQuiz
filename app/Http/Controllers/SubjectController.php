@@ -27,13 +27,12 @@ class SubjectController extends Controller
     public function index()
     {
 
-        
+        //ประกาศไว้เพราะ Auth จาก username มาก่อน 
         $username = Auth::user()->username;
         
          // $data = Quiz::all();
 
         $subjects = DB::table('Subjects')
-       
         ->join('subjects_user','subjects_user.subject_id','=','Subjects.subject_id')
         ->join('users','users.username','=','subjects_user.username')
         ->where('users.username', '=', $username)
@@ -103,7 +102,7 @@ class SubjectController extends Controller
     public function edit($id)
     {
        
-        $subject = DB::table('Subjects')->where('subject_id','=',$id)->first();
+        $subject = DB::table('Subjects')->where('subject_id','=',$id)->first(); //ดึงค่า subject_id ออกมาจาก db เพื่อนำค่าไปโชว์เพื่อแก้ไข 
 
 
         // $data = Subject::findorfail($id);
@@ -123,18 +122,18 @@ class SubjectController extends Controller
 
         $id = $request->get('subject_id_old'); //id sent by editQuiz.blade.php
         
-        $subject = Subject::find($id);
+        $subject = Subject::find($id); //หา id เก่า แล้วไปเปลี่ยน 
         $subject->subject_id = $request->get('subject_id');
         $subject->subject_name = $request->get('subject_name');
-        $subject->save();
+        $subject->save(); //เซฟ id อันใหม่ที่แก้แล้ว 
 
 
-        $quiz = Quiz::where('subject_id','=',$id)
-                ->update([
+        $quiz = Quiz::where('subject_id','=',$id)  //ต้องไปบันทึกที่ quiz ด้วยเพราะมี subject_id 
+                ->update([  
                     'subject_id' => $request->get('subject_id')
                 ]);
 
-        $subject_user = Subject_user::where('subject_id','=',$id)
+        $subject_user = Subject_user::where('subject_id','=',$id) // ทำเช่นเดียวกับ quiz 
                 ->update([
                     'subject_id' => $request->get('subject_id')
                 ]);

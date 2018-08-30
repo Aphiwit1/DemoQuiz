@@ -54,7 +54,7 @@ class QuizController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($subject_id)
+    public function create($subject_id) 
     {
         
         return view('quiz/addQuiz',compact('subject_id'));

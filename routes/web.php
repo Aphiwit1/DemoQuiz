@@ -40,10 +40,17 @@ Route::get('/subject/deleteSubject/{id?}','SubjectController@destroy');
 
 //question 
 Route::get('/question/{id?}','QuestionController@index')->name('question.index'); //name for reditect in update
+Route::get('/choiceType/{quizs_id?}','QuestionController@create')->name('addQuestion');
 
-// Multiple Choice
-Route::get('/multiple','MultipleChoiceController@index')->name('multiple.index');
-Route::get('/multipleChoice/addMultipleChoice','MultipleChoiceController@create');
+
+//testChoice
+Route::get('/choiceType/addMultiple/{id?}','QuestionController@callMultiple');
+Route::get('/choiceType/addTF/{id?}','QuestionController@callTF');
+Route::get('/choiceType/addBlank/{id?}','QuestionController@callBlank');
+
+//user
+Route::get('/userManager','UserController@index')->name('userManager.index'); //name for reditect in update
+
 
 
 
