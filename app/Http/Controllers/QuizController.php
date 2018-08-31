@@ -41,7 +41,7 @@ class QuizController extends Controller
                 ->join('Quiz_status','Quiz_status.quizs_status_id','=','quizs.quizs_status_id')
                 ->join('Groups_quizs','Groups_quizs.quizs_id','=','quizs.quizs_id')
                 ->join('Groups','Groups.groups_id','=','Groups_quizs.groups_id')
-                ->where('users.username', '=', $username)
+                ->where('users.username', '=', $username) //ใส่หรือไม่ใส่ก็ได้ 
                 ->where('Subjects.subject_id','=',$subject_id)
                 ->get();
         

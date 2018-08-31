@@ -2,12 +2,13 @@
 
 @section('content')
 <div class="container">
+        @foreach($subject_user as $subject_user)
     <div class="row mb-2">
         <div class="col-md-3">
-            <h2 >User Manager</h2>
+        <h2 >User {{$subject_user->username}}</h2>
             </div>
             <div class="col-md-9">
-            <a href="{{ URL::to('/userManager/addUser')}}" class="btn btn-success float-right">Add User</a>
+         
             </div>   
     </div>
 
@@ -19,27 +20,34 @@
                     <th style="width:50px;">Remark</th>
                     <th style="width:50px;">Firstname</th>
                     <th style="width:50px;">Lastname</th>
+                    <th>Subject ID</th>
+                    <th>Subject Name</th>
+                    <th>Student Group</th>
                     <th style="width:100px;"></th>
                 </tr>
                 <tbody>
-                    @foreach($user as $user)
                     <tr>
-                        <td style="font-size: 0.8em;">{{$user->username}}</td>
-                        <td style="font-size: 0.8em;">{{$user->remark}}</td>
-                        <td style="font-size: 0.8em;">{{$user->firstname}}</td>
-                        <td style="font-size: 0.8em;">{{$user->lastname}}</td>
+                        <td style="font-size: 0.8em;">{{$subject_user->username}}</td>
+                        <td style="font-size: 0.8em;">{{$subject_user->remark}}</td>
+                        <td style="font-size: 0.8em;">{{$subject_user->firstname}}</td>
+                        <td style="font-size: 0.8em;">{{$subject_user->lastname}}</td>
+                        <td style="font-size: 0.8em;">{{$subject_user->subject_id}}</td>
+                        <td style="font-size: 0.8em;">{{$subject_user->subject_name}}</td>
+                        <td style="font-size: 0.8em;">{{$subject_user->student_group_name}}</td>
                         <td >
-                        <a href="{{URL::to('/userManager/viewUserInfo/'.$user->username)}}" class="btn btn-info btn-sm">View</a>
+                                <a href="#" class="btn btn-info btn-sm">View</a>
                                 <a href="#" class="btn btn-warning btn-sm">Edit</a>
                                 <a href="#" class="btn btn-danger btn-sm">Delete</a>
                         </td>
                     </tr>
-                    @endforeach
+                 
                 </tbody>
             </table>
             
              <hr>
         </div>
+        @endforeach
+</div> 
 
-    @endsection
+ @endsection
 

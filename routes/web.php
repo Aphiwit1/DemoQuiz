@@ -48,8 +48,11 @@ Route::get('/choiceType/addMultiple/{id?}','QuestionController@callMultiple');
 Route::get('/choiceType/addTF/{id?}','QuestionController@callTF');
 Route::get('/choiceType/addBlank/{id?}','QuestionController@callBlank');
 
-//user
+//user manager for admin
 Route::get('/userManager','UserController@index')->name('userManager.index'); //name for reditect in update
+Route::get('/userManager/viewUserInfo/{username?}','UserController@viewStudent');
+Route::get('/userManager/addUser','UserController@create');
+Route::post('/userManager/saveUser','UserController@store')->name('saveUser');
 
 
 
