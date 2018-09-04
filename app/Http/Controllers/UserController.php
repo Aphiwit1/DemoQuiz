@@ -21,13 +21,9 @@ class UserController extends Controller
     {
         $username = Auth::user()->username;
 
-        $user = DB::table('users')
-        // ->join('Group_user','Group_user.username','=','users.username')
-        // ->join('Groups','Groups.groups_id','=','Group_user.groups_id')
-        // ->where('users.username', '=', $username)
+        $user = DB::table('users') //โชว์แค่ข้อมูล user ไม่จำเป็นต้อง join ข้อมูลกับตารางอื่น 
         ->get();
 
-           
         return view('admin/user/index',compact('user'));
     }
 
@@ -38,11 +34,12 @@ class UserController extends Controller
      */
     public function create()
     {
+
+        //ดึงข้อมูลของแต่ละตารางออกมาโข์ที่หน้า addUser.php 
         $subject = DB::table('Subjects')->select('subject_id','subject_name')->get();
         $student_group = DB::table('Student_group')->select('student_group_id','student_group_name')->get();
         $user = DB::table('users')->select('username')->orderBy('username','ASC')->get();
      
-        
         return view('admin/user/addUser',compact('subject','student_group','user'));
     }
 
@@ -55,12 +52,15 @@ class UserController extends Controller
     public function store(Request $request)
     {
 
+        //เวลาเก็บข้อมูลลงแต่ละตาราง ให้เก็บแยก ตาม name="" ในหน้า adduser 
         $first_student = $request->user;
         $last_student = $request->user2;
         $subject_id = $request->subject;
 
+        //เก็บข้อมูลระหว่าง ตัวและและตัวสุดท้าย นับตัวแรกและตัวสุดท้ายด้วย 
         $query = DB::table('users')->select('username')->whereBetween('username',[$first_student,$last_student])->get();
 
+        // วนข้อมูลเก็บทีละคนผ่าน foreach 
         foreach($query as $student){
             Subject_user::insert([
                 'subject_id'=> $subject_id,
@@ -69,7 +69,8 @@ class UserController extends Controller
             ]);
         }
         
-        return 1;
+        // return redirect()->route('userManager.index',['users'=>$request->get('users')]);
+        return redirect()->route('userManager.index');
         
     }
 

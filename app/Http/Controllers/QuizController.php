@@ -77,14 +77,12 @@ class QuizController extends Controller
             'quizs_types_id' => $request->get('quizs_types_id'),
             'quizs_status_id' => $request->get('quizs_status_id'),
           ]);
-
           $quiz->save();
 
           $group_quiz = new Group_quiz([
                 'quizs_id' =>$quiz->quizs_id, //quiz ใหม่เรื่อยๆ ต้องทำแบบนี้เพื่อให้ข้อมูลเก็บ
                 'groups_id' =>$request->get('groups_id')
           ]);
-
           $group_quiz->save();
                    
           return redirect()->route('quiz.index',['subject_id'=>$request->get('subject_id')]);
