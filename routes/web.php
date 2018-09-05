@@ -53,6 +53,7 @@ Route::get('/userManager','UserController@index')->name('userManager.index'); //
 Route::get('/userManager/viewUserInfo/{username?}','UserController@viewStudent');
 Route::get('/userManager/addUser','UserController@create');
 Route::post('/userManager/saveUser','UserController@store')->name('saveUser');
+Route::get('/userManager/delete/{id?}','UserController@destroy');
 
 
 

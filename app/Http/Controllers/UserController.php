@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Users;
 use App\User;
 use App\Subject;
 use App\Subject_user;
 use DB;
 use Auth;
+use App\Student_group;
 
 use Illuminate\Http\Request;
 
@@ -56,6 +58,8 @@ class UserController extends Controller
         $first_student = $request->user;
         $last_student = $request->user2;
         $subject_id = $request->subject;
+        //
+        // $student_group_id = $request->student_group;
 
         //เก็บข้อมูลระหว่าง ตัวและและตัวสุดท้าย นับตัวแรกและตัวสุดท้ายด้วย 
         $query = DB::table('users')->select('username')->whereBetween('username',[$first_student,$last_student])->get();
@@ -64,8 +68,9 @@ class UserController extends Controller
         foreach($query as $student){
             Subject_user::insert([
                 'subject_id'=> $subject_id,
-                'username'=> $student->username,
-                'student_group_id'=> $request->student_group
+                'username'=> $student->username, 
+                'student_group_id'=> $request->student_group,
+                // 'student_group_id'=> $student_group_id,
             ]);
         }
         
@@ -116,7 +121,17 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        $user = Users::find($id);
+        $user->delete();
+    
+        $subject_user  = Subject_user::find($id);
+        $subject_user->delete();
+
+        $student_group_id = Student_group::find($id);
+        $student_group_id->delete();
+        return redirect()->route('userManager.index')->with('success', 'Data Deleted');
+
     }
 
 
@@ -124,12 +139,14 @@ class UserController extends Controller
     {
         $subject_user = DB::table('subjects_user')
         ->join('users','users.username','=','subjects_user.username')
-        // ->join('Subjects','Subjects.subject_id','=','subjects_user.subject_id')
+        //
+        ->join('Subjects','Subjects.subject_id','=','subjects_user.subject_id')
+        //
         ->join('Student_group','Student_group.student_group_id','=','subjects_user.student_group_id')
         ->where('users.username','=',$username)
         ->get();     
         
-        dd($subject_user);
+        // dd($subject_user);
 
         return view('admin/user/viewUserInfo',compact('subject_user','username'));
     }
