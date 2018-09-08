@@ -54,6 +54,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
 
+            
         //เวลาเก็บข้อมูลลงแต่ละตาราง ให้เก็บแยก ตาม name="" ในหน้า adduser 
         $first_student = $request->user;
         $last_student = $request->user2;
@@ -122,14 +123,12 @@ class UserController extends Controller
     public function destroy($id)
     {
         
-        $user = Users::find($id);
-        $user->delete();
-    
-        $subject_user  = Subject_user::find($id);
-        $subject_user->delete();
+        $user = Users::where('username', '=', $id)->delete();
 
-        $student_group_id = Student_group::find($id);
-        $student_group_id->delete();
+    
+        $subject_user  = Subject_user::where('username', '=', $id)->delete();
+ 
+
         return redirect()->route('userManager.index')->with('success', 'Data Deleted');
 
     }

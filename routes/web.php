@@ -45,6 +45,9 @@ Route::get('/choiceType/{quizs_id?}','QuestionController@create')->name('addQues
 
 //testChoice
 Route::get('/choiceType/addMultiple/{id?}','QuestionController@callMultiple');
+//saveMultipleChoice 
+Route::get('/choiceType/saveChoice/{id?}','QuestionController@storeChoice')->name('saveChoice');
+// Route::get('//choiceType/AnswerChoice/{id?}','QuestionController@storeChoice')
 Route::get('/choiceType/addTF/{id?}','QuestionController@callTF');
 Route::get('/choiceType/addBlank/{id?}','QuestionController@callBlank');
 

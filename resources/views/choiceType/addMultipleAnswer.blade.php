@@ -18,17 +18,7 @@
 
                     {{-- Question 1 --}}
                     <div class="col-md-12">  
-                            <div class="row ">
-                                        <label>Question Number</label>
-                            </div>
-                                <div class="row mt-2 mb-4">
-                                                <input style="width:100px;" id="number" type="text" class="form-control{{ $errors->has('number') ? ' is-invalid' : '' }}" name="number" value="{{ old('number') }}" required autofocus>
-                                                        @if ($errors->has('number'))
-                                                        <span class="invalid-feedback" role="alert">
-                                                                <strong>{{ $errors->first('number') }}</strong>
-                                                        </span>
-                                                        @endif
-                                </div>    
+                             
                      
                         <div class="row">
                                 <div class="col-md-6 ">

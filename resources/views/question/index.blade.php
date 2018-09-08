@@ -8,7 +8,29 @@
             </div>
             <div class="col-md-9">
             {{-- <a href="{{ URL::to('multipleChoice/addMultipleChoice')}}" class="btn btn-success float-right">Add Question</a> --}}
-                </div>   
+            <div class="btn-group float-right">
+                <button type="button" class="btn btn-success dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Add Question
+                </button>
+
+                      
+           
+                <div class="dropdown-menu">
+                    <a class="dropdown-item"  
+                        href="{{ URL::to('choiceType/addMultiple/{id?}')}}">multipleChoice</a>
+                    <a class="dropdown-item"  
+                            href="{{ URL::to('/question/blankQuestion/{id?}')}}">BlankQuestion</a>
+                    <a class="dropdown-item"  
+                            href="{{ URL::to('/question/shortAnswer/{id?}')}}">shortAnswer</a>
+                    <a class="dropdown-item" 
+                            href="{{ URL::to('/question/UploadQuestion/{id?}')}}">UploadQuestion</a>
+                        <a class="dropdown-item" href="#">TrueFalse</a>
+                        
+                </div>
+               
+    </div>       
+
+            </div>   
     </div>
     <div class="row">
           
@@ -30,10 +52,21 @@
                 Add Upload Question
             </a>
         </div> --}}
+
+        <div class="dropdown-menu">
+            <a class="dropdown-item"  
+                    href="{{ URL::to('/question/blankQuestion/{id?}')}}">BlankQuestion</a>
+            <a class="dropdown-item"  
+                    href="{{ URL::to('/question/shortAnswer/{id?}')}}">shortAnswer</a>
+            <a class="dropdown-item" 
+                    href="{{ URL::to('/question/UploadQuestion/{id?}')}}">UploadQuestion</a>
+            <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">TrueFalse</a>
+        </div>
         
-        @foreach($question as $question)    
+        @foreach($question as $questions)    
         
-        <h1>{{$question->questions_id}}</h1>
+        <h1>{{$questions->questions_id}}</h1>
                 
         @endforeach
     </div>

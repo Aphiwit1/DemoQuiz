@@ -19,6 +19,17 @@
                 <h6>Enter Your Question</h6>
                     <input type="text" class="form-control" id="#" placeholder="" name="#">
                     
+                    <div class="col-md-6">
+                        <input id="subject_id" type="text" class="form-control{{ $errors->has('subject_id') ? ' is-invalid' : '' }}" name="subject_id" value="{{ old('subject_id') }}" required autofocus>
+        
+                        @if ($errors->has('subject_id'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('subject_id') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+
+
                 <!-- check-box -->
                 <div class="form-check form-check">
                     <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">

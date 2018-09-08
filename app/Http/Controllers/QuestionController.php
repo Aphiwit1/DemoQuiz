@@ -43,22 +43,7 @@ class QuestionController extends Controller
      */
     public function create(Request $request,$quizs_id)
     {
-        //
-        // if($request->get('type') == 1){
-        //     return view('question/index',compact('question')); 
-        // }else if($request->get('type') == 2){
-        // }
-        if($request->get('value') == 1){
-            return view('choiceType/addBlank',compact('quizs_id')); 
-        }else if($request->get('value') == 2){
-            return view('choiceType/addMultiple',compact('quizs_id')); 
-        }else if($request->get('value') == 3){
-            return view('choiceType/addShort',compact('quizs_id')); 
-        }else if($request->get('value') == 4){
-            return view('choiceType/addTF',compact('quizs_id')); 
-        }else if($request->get('value') == 5){
-            return view('choiceType/addUpload',compact('quizs_id')); 
-        }
+        
     }
 
     /**
@@ -118,7 +103,7 @@ class QuestionController extends Controller
     }
 
 
-    //test 
+    //test choice 
     public function callMultiple($id){
         return view('choiceType.addMultiple');
     }
@@ -128,5 +113,26 @@ class QuestionController extends Controller
     }
     public function callBlank($id){
         return view('choiceType.addBlank');
+    }
+
+
+    public function storeChoice(Request $request,$quizs_id)
+    {
+       
+       
+        $question = Question::insert([
+            'number' => $request->get('number'),
+            'question' => $request->get('question'), //question mean question descritpion
+            'score' => $request->get('score'),
+        ]);
+        $question->save();
+
+        $choice = Choice::insert([
+            'choice' => $request->get('choice')
+        ]);
+        $choice->save();
+
+
+        return redirect()->route('question.index');
     }
 }
