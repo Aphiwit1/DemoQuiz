@@ -144,7 +144,7 @@ class UserController extends Controller
         ->join('Student_group','Student_group.student_group_id','=','subjects_user.student_group_id')
         ->where('users.username','=',$username)
         ->get();     
-        
+    
         // dd($subject_user);
 
         return view('admin/user/viewUserInfo',compact('subject_user','username'));

@@ -13,6 +13,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{asset('vender/bootstrap/css/bootstrap.min.css')}}" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -24,7 +25,7 @@
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
 </head>
 <body>
-    <div id="app">
+    <div>
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">

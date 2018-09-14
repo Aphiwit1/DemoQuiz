@@ -17,14 +17,16 @@
            
                 <div class="dropdown-menu">
                     <a class="dropdown-item"  
-                        href="{{ URL::to('choiceType/addMultiple/{id?}')}}">multipleChoice</a>
+                        href="{{ URL::to('choiceType/addMultiple/{id?}')}}">MultipleChoice</a>
+                    <a class="dropdown-item" 
+                            href="{{ URL::to('choiceType/addTF/{id?}')}}">True/False</a>
                     <a class="dropdown-item"  
                             href="{{ URL::to('/question/blankQuestion/{id?}')}}">BlankQuestion</a>
                     <a class="dropdown-item"  
                             href="{{ URL::to('/question/shortAnswer/{id?}')}}">shortAnswer</a>
                     <a class="dropdown-item" 
                             href="{{ URL::to('/question/UploadQuestion/{id?}')}}">UploadQuestion</a>
-                        <a class="dropdown-item" href="#">TrueFalse</a>
+                        
                         
                 </div>
                
