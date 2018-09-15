@@ -7,8 +7,8 @@
             <h2 >Home(Subject Manager)</h2>
             </div>
             <div class="col-md-8">
-                <a href="{{ URL::to('subject/addSubject')}}" class="btn btn-success float-right">Add Subject</a>
-                </div>   
+                @if($permission == 'ADMIN') <a href="{{ URL::to('subject/addSubject')}}" class="btn btn-success float-right">Add Subject</a> @endif
+            </div>   
     </div>
 
     <nav aria-label="breadcrumb">

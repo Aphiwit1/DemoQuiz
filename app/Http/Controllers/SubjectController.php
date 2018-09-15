@@ -19,13 +19,24 @@ use Illuminate\Http\Request;
 
 class SubjectController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('Admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
+        // dd($request->get('permission'));
+        $permission = $request->get('permission');
+
+
 
         //ประกาศไว้เพราะ Auth จาก username มาก่อน 
         $username = Auth::user()->username;
@@ -42,7 +53,7 @@ class SubjectController extends Controller
         
 
 
-        return view('subject/index',compact('subjects'));
+        return view('subject/index',compact('subjects','permission'));
         
     }
 

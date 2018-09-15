@@ -1,4 +1,7 @@
 
+       
+            @extends('layouts.main')
+            @section('content')
             <div class="container" id="app">
                 <form action="">
                         {{ csrf_field() }}
@@ -90,4 +93,5 @@
             })
     </script>
 
+@endsection
 

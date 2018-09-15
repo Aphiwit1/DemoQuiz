@@ -1,4 +1,7 @@
+@extends('layouts.main')
 
+@section('content')
+            
             <div class="container" id="app">
                     <form action="">
                             {{ csrf_field() }}
@@ -63,9 +66,12 @@
             </div>
             
 
-        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        
+
+@endsection
+@push('script')
         <script>
-            var vm = new Vue({
+             new Vue({
                 el: '#app',
                 data: {
                     choice: '4',
@@ -89,5 +95,4 @@
 
                 })
         </script>
-
-
+@endpush

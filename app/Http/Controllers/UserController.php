@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Users;
 use App\User;
 use App\Subject;
@@ -9,6 +10,10 @@ use App\Subject_user;
 use DB;
 use Auth;
 use App\Student_group;
+use App\Http\Controllers\Middleware\Admin;
+
+
+
 
 use Illuminate\Http\Request;
 
