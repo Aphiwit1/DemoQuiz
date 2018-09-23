@@ -79,19 +79,7 @@
                                       <li class="nav-item ">
                                         <a class="nav-link" href="#">Home</a>
                                       </li>
-                                      <li class="nav-item ml-4">
-                                            {{-- @if($permission == 'ADMIN')  --}}
-                                        <a class="nav-link" href="#">Quiz Manager</a>
-                                      </li>
-                                      <li class="nav-item ml-4">
-                                        <a class="nav-link" href="{{ URL::to('/userManager')}}">User Manager</a>
-                                      </li>
-                                      <li class="nav-item ml-4">
-                                        <a class="nav-link disabled" href="#">Setting</a>
-                                        {{-- @endif --}}
-                                      </li>
                                     </ul>
-                                    
                             </div>
                       </nav>
                     

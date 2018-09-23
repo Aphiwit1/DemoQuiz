@@ -1,4 +1,6 @@
-@extends('layouts.main')
+
+
+    @extends('layouts.main')
 
 @section('content')
 <div class="container">
@@ -13,6 +15,7 @@
 
     <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="{{ URL::to('quiz')}}">Home</a></li>
               <li class="breadcrumb-item"><a href="{{ URL::to('quiz')}}">Home</a></li>
             </ol>
           </nav>

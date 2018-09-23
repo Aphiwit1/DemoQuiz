@@ -27,10 +27,11 @@ class UserController extends Controller
     public function index()
     {
         $username = Auth::user()->username;
-
+      
         $user = DB::table('users') //โชว์แค่ข้อมูล user ไม่จำเป็นต้อง join ข้อมูลกับตารางอื่น 
         ->get();
-
+        $page = DB::table('users')->paginate(5);
+       
         return view('admin/user/index',compact('user'));
     }
 
@@ -46,6 +47,7 @@ class UserController extends Controller
         $subject = DB::table('Subjects')->select('subject_id','subject_name')->get();
         $student_group = DB::table('Student_group')->select('student_group_id','student_group_name')->get();
         $user = DB::table('users')->select('username')->orderBy('username','ASC')->get();
+   
      
         return view('admin/user/addUser',compact('subject','student_group','user'));
     }

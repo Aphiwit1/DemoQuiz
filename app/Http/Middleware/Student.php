@@ -1,9 +1,12 @@
 <?php
+
 namespace App\Http\Middleware;
+
 use Closure;
 use App\Group_user;
 use Auth;
-class Admin
+
+class Student
 {
     /**
      * Handle an incoming request.
@@ -14,18 +17,15 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        
         $username = Auth::user()->username;
-       
         $permission = Group_user::select('groups_id')->where('username', '=', $username)->first();
-        if($permission->groups_id == 'ADMIN'){
+        return $next($request);
+        if($permission->groups_id == 'STUDENT'){
             $permission = $permission->groups_id;
             $request->merge(compact('permission'));
             return $next($request);
-        }elseif($permission->groups_id == 'STUDENT'){
-            return $next($request);
+        }else{
+            return back();
         }
-        
-        
     }
 }

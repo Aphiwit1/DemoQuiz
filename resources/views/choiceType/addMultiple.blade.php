@@ -3,7 +3,7 @@
 @section('content')
             
             <div class="container" id="app">
-                    <form action="">
+                    <form action="" method="post">
                             {{ csrf_field() }}
                                    <div class="form-group col-md-12">
                            
@@ -16,7 +16,7 @@
                                                     </div>
                            
                                                     <div class="col-md-2">
-                                                            <button type="button" class="btn btn-primary btn-sm" v-on:click="addQuiz(this.choice)">Add Choice</button>
+                                                            <button type="button" class="btn btn-primary btn-sm" v-on:click="addQuiz(this.choice)">Add Question</button>
                                                     </div> 
                            
                                                     <div class="col-md-2">
@@ -28,24 +28,28 @@
                
                                            <div class="row">
                                                <div class="mt-2" v-for="quizs in quiz">
+                                                       {{-- choice number --}}
+                                                        <div class="row mb-3">
+                                                                <label class="mr-2">Question Number :</p> 
+                                                                <input style="width:100px;" id="question" type="text" class="form-control" name="question" value="" >
+                                                        </div>
+
+                                                        {{-- question name --}}
                                                            <div class="row">
-                                                                  
-                                                                   <input style="width:600px;" id="question" type="text" class="form-controls" name="question" value="" >
-                                                                  
+                                                                        <label class="mr-2">Question Name :</p> 
+                                                                   <input style="width:600px;" id="question" type="text" class="form-control" name="question" value="" >
                                                            </div>
                
                                                            <div class="row" v-for="ch in quizs.choice">
                                                                
                                                                    <div class="mt-2">
                                                                            <div class="checkbox mt-3">
-                                                                                   <label><input type="checkbox" value="" name="choice_id">
-               
-                                                                                           <input type="text" value="" name ="choice_name" s>
+                                                                                           <input type="text" class="form-control"  value="" name ="choice_name" >
                                                                                    </label>
                                                                            </div>
                                                                    </div>
                                                            </div> 
-               
+               <br>
                                                            <div class="row">
                                                                <div class="col-md-10">
                                                                        <label for="question">Score:</label><br>
@@ -69,6 +73,7 @@
         
 
 @endsection
+
 @push('script')
         <script>
              new Vue({

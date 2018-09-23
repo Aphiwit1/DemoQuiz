@@ -119,15 +119,22 @@ class QuestionController extends Controller
     public function storeChoice(Request $request,$quizs_id)
     {
        
+    //  for($i=1; $i<count($request->get('question'));$i++){
+        
+    //  }
+
        
+
         $question = Question::insert([
-            'number' => $request->get('number'),
-            'question' => $request->get('question'), //question mean question descritpion
+            // 'number' => $request->get('number'),
+            // 'question' => $request->get('question'), //question mean question descritpion
+            
             'score' => $request->get('score'),
         ]);
         $question->save();
 
         $choice = Choice::insert([
+            //choice means choice text
             'choice' => $request->get('choice')
         ]);
         $choice->save();

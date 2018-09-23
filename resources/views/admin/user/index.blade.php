@@ -36,8 +36,9 @@
                     </tr>
                     @endforeach
                 </tbody>
+                
             </table>
-            
+        
              <hr>
         </div>
 
