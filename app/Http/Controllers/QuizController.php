@@ -21,16 +21,22 @@ use Html;
 
 class QuizController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('Admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($subject_id)
+    public function index(Request $request,$subject_id)
     {
+
+        $permission = $request->get('permission');
         $username = Auth::user()->username;
-    
-       
         
         // $data = Quiz::all();
         $quizzes = DB::table('quizs')
@@ -45,7 +51,12 @@ class QuizController extends Controller
                 ->where('Subjects.subject_id','=',$subject_id)
                 ->get();
         
-        return view('quiz/index',compact('quizzes','subject_id'));
+                if($permission == 'ADMIN'){
+                    return view('quiz/index',compact('quizzes','subject_id'));
+                }else{
+                    return view('student/student_quiz/index',compact('quizzes','subject_id'));
+                }
+       
         
     }
 

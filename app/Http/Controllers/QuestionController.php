@@ -15,14 +15,22 @@ use Choice_type;
 
 class QuestionController extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware('Admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($quizs_id)
+    public function index(Request $request,$quizs_id)
     {
       
+        $permission = $request->get('permission');
 
         $question = DB::table('Questions')
             // ->join('Question_types','Question_types.questions_types_id','=','Questions.questions_types_id')
@@ -32,8 +40,13 @@ class QuestionController extends Controller
             ->join('choice_type','choice_type.choice_type_id','=','Choice.choice_type_id')
             ->where('quizs.quizs_id','=',$quizs_id)
             ->get();
-
+        
+        if($permission == 'ADMIN'){
             return view('question/index',compact('question',$quizs_id));       
+        }else{
+            return view('student/student_question/index',compact('question',$quizs_id));
+        }
+          
     }
 
     /**
